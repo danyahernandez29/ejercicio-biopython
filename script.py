@@ -22,5 +22,5 @@ def summarize_contents(filename):
               print("description: ", seq_record.description)
               print("\n")
      
-" Llamada a la función summarize_contents
+# Llamada a la función summarize_contents
   summarize_contents(filename)         
