@@ -1,26 +1,35 @@
-from Bio import SeqI0
+        #creacion de script
+from Bio import SeqIO
 from Bio.SeqRecord import SeqRecord
 import os
 
-# Archivo .gbk de mi escritorio, cambiar a la dirección del nuevo archivo .gbk a leer
-filename = "/mnt/c/Users/danyarenee29/Desktop/Escritorio/comp/genome_assemblies_genome_gbk"
+filename = os.path.abspath("data/ls_orchid.gbk")
 
-# Definición de la función summarize_contents
+#Creacion de funcion
 def summarize_contents(filename):
-        lRuta = []
-        lRuta = os.path.split(filename)
-        print("file:", lRuta[1], "\npath:", lRuta[0]
-        all_records=[]
-        records = list(SeqI0.parse(filename, "genbank"))
-        #print ("path: ", os.path.dirname(filename))
-        print("num_records = %i records" % len(records))
-        print("records:")
-        for seq_record in SeqI0.parse(filename, "genbank"):
-              all_records.append(seq_record.name)
-              print("- id:",seq_record.id)
-              print("name ",seq_record.name)
-              print("description: ", seq_record.description)
-              print("\n")
-     
-# Llamada a la función summarize_contents
-  summarize_contents(filename)         
+	listaOs = os.path.split(filename)
+	listaExt = os.path.splitext(filename)
+	if (listaExt[1] == ".gbk"):
+		type_file= "genbank"
+	else: 
+		type_file= "fasta"
+	record = list(SeqIO.parse(filename, type_file))
+	#Creacion de diccionario
+	d = {}
+	d['File:'] = listaOs[1]
+	d['Path:'] = listaOs[0]
+	d['Num_records:'] = len(record)
+	#Diccionario con listas
+	d['Names:'] = []
+	d['IDs:'] = []
+	d['Descriptions'] = []
+	#Registro de records
+	for seq_rcd in SeqIO.parse(filename,type_file):
+		d['Names:'].append(seq_rcd.name)
+		d['IDs:'].append(seq_rcd.id)
+		d['Descriptions'].append(seq_rcd.description)
+	return d
+#Imprimir la funcion
+if __name__ == "__main__":
+	resultados = summarize_contents(filename)
+	print(resultados)
