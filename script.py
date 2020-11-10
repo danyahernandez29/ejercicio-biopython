@@ -24,3 +24,21 @@ def summarize_contents(filename):
      
 # Llamada a la función summarize_contents
   summarize_contents(filename)         
+#Secuencia ingresada por el usuario
+sc1 = input("Ingresar la secuencia de ADN:")
+sc2 = input("Ingresar la segunda secuencia de ADN:")
+
+Sequence1 = Seq(s1)
+Sequence2 = Seq(s2)
+
+#Función definida
+#Se determina la función ya que la secuencia es insertada
+
+def concatenate_and_get_reverse_of_complement(Sequence1,Sequence2):
+concatenate = Sequence1 + Sequence2 #serie de cadenas 
+inverse = concatenate.reverse_complement()) 
+return (concatenate.reverse_complement())
+
+if _name__ == "_main_":
+ressequence2 = concatenate_and_get_reverse_of_complement(Sequence1, Sequence2)
+print(ressequence2) 
