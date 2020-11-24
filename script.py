@@ -6,29 +6,29 @@ import os
 #filename = os.path.abspath("data/ls_orchid.gbk")
 
 #Creacion de funcion
-#def summarize_contents(filename):
-#rptOs = os.path.split(filename)
-#        rptSld = os.path.splitext(filename)
-#        if (rptSld[1] == ".gbk"):
-#                type_file= "genbank"
-#        else:
-#                type_file= "fasta"
-#        record = list(SeqIO.parse(filename, type_file))
+def summarize_contents(filename):
+rptOs = os.path.split(filename)
+        rptSld = os.path.splitext(filename)
+        if (rptSld[1] == ".gbk"):
+                type_file= "genbank"
+        else:
+                type_file= "fasta"
+        record = list(SeqIO.parse(filename, type_file))
         #Creacion de diccionario
-#        di = {}
-#        di['File:'] = rptOs[1]
-#        di['Path:'] = rptOs[0]
-#        di['Num_records:'] = len(record)
-#        #Diccionario con listas
-#        di['Names:'] = []
-#        di['IDs:'] = []
-#        di['Descriptions'] = []
+        di = {}
+        di['File:'] = rptOs[1]
+        di['Path:'] = rptOs[0]
+        di['Num_records:'] = len(record)
+        #Diccionario con listas
+        di['Names:'] = []
+        di['IDs:'] = []
+        di['Descriptions'] = []
         #Registro de records
-#        for seq_rcd in SeqIO.parse(filename,type_file):
-#                di['Names:'].append(seq_rcd.name)
-#                di['IDs:'].append(seq_rcd.id)
-#                di['Descriptions'].append(seq_rcd.description)
-#        return di
+        for seq_rcd in SeqIO.parse(filename,type_file):
+                di['Names:'].append(seq_rcd.name)
+                di['IDs:'].append(seq_rcd.id)
+                di['Descriptions'].append(seq_rcd.description)
+        return di
 #Imprimir la funcion
 if __name__ == "__main__":
         resultados = summarize_contents(filename)
@@ -94,3 +94,28 @@ def print_protein_and_stop_codon_using_standard_table(sequence):
 if __name__ == "__main__":
 	resultado = print_protein_and_stop_codon_using_standard_table(sequence)
 	print(resultado)
+
+#Función extract_sequences
+narchivo = "/mnt/c/Users/danya/Videos/bioinfo/ejercio-biopyhton/data/sequences.fasta"
+exit = "genbank"
+tmolecule = "protein"
+def extract_sequences(narchivo,exit):
+    files = 0
+    if(exit == "genbank"):
+        SeqIO.convert(narchivo, "fasta", "sequences.gbk", "genbank", tmolecule)
+        records = list(SeqIO.parse("sequences.gbk","genbank"))
+        for i, record in enumerate(records):
+            f = open(f"sequence{i}.gbk", "w")
+            f.write(record.format("genbank"))
+            f.close()
+            files = files+1
+    else:
+        records = list(SeqIO.parse(narchivo,"fasta"))
+        files = 0
+        for i, record in enumerate(records): 
+            f = open(f"sequence{i}.fasta", "w")
+            f.write(record.format("fasta"))
+            f.close()
+            files = files+1
+    return(files)
+extract_sequences(narchivo,exit)
