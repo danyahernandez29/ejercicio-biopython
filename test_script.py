@@ -54,3 +54,10 @@ if __name__ == "__main__"
 		creversa = concatenate_and_get_reverse_of_complement("CGCATTCGACTAGTC", "GGGCTACATCATCGA")
 		self.assertEqual(sequence5,creversa)
 
+#Función extract_sequences para Gen Bank y Fasta.
+class test(unittest.TestCase):
+    def test_extract_sequences(self):
+        filename = "/mnt/c/Users/danya/Videos/bioinfo/ejercicio-biopython/data/sequences.fasta"
+        salida = "genbank"
+        script = Script.extract_sequences(narchivo,exit)
+        self.assertEqual(837,es)
