@@ -2,8 +2,8 @@ import unittest
 import script
 import os
 
-#Creacion de clase
-class Prueba(unittest.TestCase):
+#Class creation 
+class Test(unittest.TestCase):
 	def test_summarize_contents(self):
 		di_1 = {'File:': 'AF323668.gbk', 'Path:': os.path.abspath('data'), 'Num_records:': 1, 'Names:': ['AF323668'], 'IDs:': ['AF323668.1'], 'Descriptions': ['Bacteriophage bIL285, complete genome']}
 		s = script.summarize_contents(os.path.abspath("data/AF323668.gbk"))
@@ -29,35 +29,35 @@ class Prueba(unittest.TestCase):
 		s = script.summarize_contents(os.path.abspath("data/opuntia.fasta"))
 		self.assertDictEqual(di_6, s)
 
-#Ejercicio 2
+#Exercise 2
 if __name__ == "__main__"
 	unittest.main()
 	def test_concatenate_get_reverse_of_complement(self):
 
 		sequence1 = Cadena("GCTAACTATGCCAAT")
 		creversa = concatenate_and_get_reverse_of_complement("ATGCGAATGCGATCA", "TCGACCTAAGTCAGA")
-		self.assertEqual(sequence1,creversa)
+		self.assertEqual(sequence1,creverse)
 
 		sequence2 = Cadena("GATCAAGCCTGATCA")
 		creversa = concatenate_and_get_reverse_of_complement("AGCTACTGCTAGACT", "TCGACTATCGATACC")
-		self. assertEqual(sequence2,creversa)
+		self. assertEqual(sequence2,creverse)
 
 		sequence3 = Cadena("ATCGAATCGCTGGAC")
 		creversa = concatenate_and_get_reverse_of_complement("GCTTACGAACTGCAT", "AGGTCCATACGAATC")
-		self.assertEqual(sequence3,creversa)
+		self.assertEqual(sequence3,creverse)
 
 		sequence4 = Cadena("TGAACGTCGATTACA")
 		creversa = concatenate_and_get_reverse_of_complement("AATCGGACTACGTCG", "CTACGACTAAGCTTA")
-		self.assertEqual(sequence4,creversa)
+		self.assertEqual(sequence4,creverse)
 
 		sequence5 = Cadena("CGGCTACATACGCCG")
 		creversa = concatenate_and_get_reverse_of_complement("CGCATTCGACTAGTC", "GGGCTACATCATCGA")
-		self.assertEqual(sequence5,creversa)
+		self.assertEqual(sequence5,creverse)
 
-#Función extract_sequences para Gen Bank y Fasta.
+#Extract_sequences function for Gen Bank and Fasta.
 class test(unittest.TestCase):
     def test_extract_sequences(self):
         filename = "/mnt/c/Users/danya/Videos/bioinfo/ejercicio-biopython/data/sequences.fasta"
-        salida = "genbank"
-        script = Script.extract_sequences(narchivo,exit)
+        exit = "genbank"
+        script = Script.extract_sequences(narchive,exit)
         self.assertEqual(837,es)
