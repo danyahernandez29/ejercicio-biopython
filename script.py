@@ -5,7 +5,7 @@ import os
 
 #filename = os.path.abspath("data/ls_orchid.gbk")
 
-#Creacion de funcion
+#Function creation
 def summarize_contents(filename):
 rptOs = os.path.split(filename)
         rptSld = os.path.splitext(filename)
@@ -19,30 +19,30 @@ rptOs = os.path.split(filename)
         di['File:'] = rptOs[1]
         di['Path:'] = rptOs[0]
         di['Num_records:'] = len(record)
-        #Diccionario con listas
+        #String dictionary
         di['Names:'] = []
         di['IDs:'] = []
         di['Descriptions'] = []
-        #Registro de records
+        #Records
         for seq_rcd in SeqIO.parse(filename,type_file):
                 di['Names:'].append(seq_rcd.name)
                 di['IDs:'].append(seq_rcd.id)
                 di['Descriptions'].append(seq_rcd.description)
         return di
-#Imprimir la funcion
+#Print function
 if __name__ == "__main__":
-        resultados = summarize_contents(filename)
-        print(resultados)
+        results = summarize_contents(filename)
+        print(results)
 
-#Secuencia ingresada por el usuario
-	entrada1 = input("Ingresar la primera secuencia de ADN:")
-	entrada2 = input("Ingresar la segunda secuencia de ADN:")
+#Sequence given my the user
+	entry1 = input("Ingresar la primera secuencia de ADN:")
+	entry2 = input("Ingresar la segunda secuencia de ADN:")
 
-	Sequence1 = (entrada1)
-	Sequence2 = (entrada2)
+	Sequence1 = (entry1)
+	Sequence2 = (entry2)
 
-#Función definida
-#Se determina la función ya que la secuencia es insertada
+#Defined function
+#Function is determined once the string is completed
 
 def concatenate_and_get_reverse_of_complement(Sequence1,Sequence2):
 	concatenate = Sequence1 + Sequence2 #serie de cadenas 
@@ -56,53 +56,53 @@ if __name__ == "__main__":
 sequence = 'AGCTATACGACTCAG'
 def print_protein_and_stop_codon_using_standard_table(sequence):
 	try:
-		cadena = Seq(sequence)
+		string = Seq(sequence)
 	except:
-		return ("Cadena no correspondiente a secuencia de nucelótidos")
+		return ("String not related to the nucleotide sequence")
 	Diccionario = {}
-	SecuenciaRNA = cadena.transcribe()
-	Diccionario['RNAm:'] = SecuenciaRNA
-	Diccionario['Protein:'] = []
-	cinicio = False
+	SequenceRNA = string.transcribe()
+	Libraries['RNAm:'] = SequenceRNA
+	Libraries['Protein:'] = []
+	cstart = False
 	for codon in range(0,len(sequence),3):
 		if "GCT" or "ATG" or "TTG" in sequence[codon:codon+3]:
 			stcodon = codon
 			DNAcodon = Seq(sequence[codon:len(cadena)])
 
-			Diccionario['Proteina:'].append(codDNA.translate(table = 1))
-			cinicio = True
+			Library['Protein:'].append(codDNA.translate(table = 1))
+			cstart = True
 			break
 
-	if cinicio == False:
-		raise TypeError("No se presentan tripletes y/o codones de inicio en la secuencia")
+	if cstart == False:
+		raise TypeError("No triplets and/or start codon found in the sequence")
 
-	Diccionario['Stop Codon'] = []
-	if cinicio == True:
+	Library['Stop Codon'] = []
+	if cstart == True:
 		for codon in range(0,len(sequence),3):
 			if('AAT' in sequence[codon:codon+3]) and (stcodon < codon):
-				Diccionario['Stop codon'].append('AAT')
+				Library['Stop codon'].append('AAT')
 				break
 			if('GCT' in sequence[codon:codon+3]) and (stcodon < codon):
-				Diccionario['Stop codon'].append('GCT')
+				Library['Stop codon'].append('GCT')
 				break
 			if('CTA' in sequence[codon:codon+3]) and (stcodon < codon):
-				Diccionario['Stop codon'].append('CTA')
+				Library['Stop codon'].append('CTA')
 				break
 
-	return Diccionario
+	return Library
 
 if __name__ == "__main__":
-	resultado = print_protein_and_stop_codon_using_standard_table(sequence)
-	print(resultado)
+	result = print_protein_and_stop_codon_using_standard_table(sequence)
+	print(result)
 
-#Función extract_sequences
+#Extract_sequences function
 narchivo = "/mnt/c/Users/danya/Videos/bioinfo/ejercio-biopyhton/data/sequences.fasta"
 exit = "genbank"
 tmolecule = "protein"
 def extract_sequences(narchivo,exit):
     files = 0
     if(exit == "genbank"):
-        SeqIO.convert(narchivo, "fasta", "sequences.gbk", "genbank", tmolecule)
+        SeqIO.convert(narchive, "fasta", "sequences.gbk", "genbank", tmolecule)
         records = list(SeqIO.parse("sequences.gbk","genbank"))
         for i, record in enumerate(records):
             f = open(f"sequence{i}.gbk", "w")
@@ -110,7 +110,7 @@ def extract_sequences(narchivo,exit):
             f.close()
             files = files+1
     else:
-        records = list(SeqIO.parse(narchivo,"fasta"))
+        records = list(SeqIO.parse(narchive,"fasta"))
         files = 0
         for i, record in enumerate(records): 
             f = open(f"sequence{i}.fasta", "w")
@@ -118,4 +118,4 @@ def extract_sequences(narchivo,exit):
             f.close()
             files = files+1
     return(files)
-extract_sequences(narchivo,exit)
+extract_sequences(narchive,exit)
